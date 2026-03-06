@@ -1,8 +1,9 @@
 "use client";
-
+import { createClient } from "@/app/lib/supabase/client";
 import { useTestStore } from "@/store/testStore";
-
-export default function CreateTestPage() {
+import { useEffect } from "react";
+import { redirect } from "next/navigation";
+export default  function CreateTestPage() {
   const {
     year,
     title,

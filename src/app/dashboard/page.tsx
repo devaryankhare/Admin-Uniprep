@@ -10,9 +10,7 @@ export default async function Dashboard() {
     data: { user },
   } = await supabase.auth.getUser();
 
-  if (!user) {
-    redirect("/auth");
-  }
+
 
   return (
     <main>
@@ -34,6 +32,12 @@ export default async function Dashboard() {
         className="inline-block mt-4 bg-blue-600 text-white px-4 py-2 rounded"
       >
           create exam
+      </Link>
+      <Link
+        href="/dashboard/tests"
+        className="inline-block mt-4 bg-blue-600 text-white px-4 py-2 rounded"
+      >
+          List exams
       </Link>
     </main>
   );
