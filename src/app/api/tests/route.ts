@@ -10,9 +10,9 @@ export async function POST(req: Request) {
     const {supabase}=auth
  
     const body = await req.json();
-    const { year, title, duration_minutes, total_marks } = body;
+    const { year, title, duration_minutes,marks,neg_marks } = body;
 
-    if (!year || !title || !duration_minutes || !total_marks) {
+    if (!year || !title || !duration_minutes  || !marks || !neg_marks) {
       return NextResponse.json(
         { error: "All fields required" },
         { status: 400 }
@@ -27,7 +27,9 @@ export async function POST(req: Request) {
           year,
           title,
           duration_minutes,
-          total_marks,
+          total_marks:0,
+          marks,
+          negative_marks:neg_marks
         },
       ])
       .select();

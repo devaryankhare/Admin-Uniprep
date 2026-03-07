@@ -6,6 +6,8 @@ type Test = {
   title: string;
   duration_minutes: number;
   total_marks: number;
+  marks:number
+  neg_marks:number
 };
 
 type TestState = {
@@ -14,6 +16,8 @@ type TestState = {
   duration_minutes: string;
   total_marks: string;
   loading: boolean;
+  marks:string
+  neg_marks:string
 
   tests: Test[];
 
@@ -31,6 +35,8 @@ export const useTestStore = create<TestState>((set, get) => ({
   title: "",
   duration_minutes: "",
   total_marks: "",
+  marks:"",
+  neg_marks:"",
   loading: false,
 
   tests: [],
@@ -47,10 +53,12 @@ export const useTestStore = create<TestState>((set, get) => ({
       title: "",
       duration_minutes: "",
       total_marks: "",
+      marks:"",
+      neg_marks:""
     }),
 
   createTest: async () => {
-    const { year, title, duration_minutes, total_marks } = get();
+    const { year, title, duration_minutes,marks,neg_marks } = get();
 
     set({ loading: true });
 
@@ -64,7 +72,9 @@ export const useTestStore = create<TestState>((set, get) => ({
           year: Number(year),
           title,
           duration_minutes: Number(duration_minutes),
-          total_marks: Number(total_marks),
+        
+          marks: Number(marks),
+          neg_marks: Number(neg_marks)
         }),
       });
 
@@ -107,7 +117,7 @@ export const useTestStore = create<TestState>((set, get) => ({
   },
   
   updateTest: async (id) => {
-    const { year, title, duration_minutes, total_marks } = get();
+    const { year, title, duration_minutes,marks,neg_marks } = get();
 
     set({ loading: true });
 
@@ -121,7 +131,8 @@ export const useTestStore = create<TestState>((set, get) => ({
           year: Number(year),
           title,
           duration_minutes: Number(duration_minutes),
-          total_marks: Number(total_marks),
+          marks: Number(marks),
+          neg_marks: Number(neg_marks)
         }),
       });
 
@@ -165,7 +176,8 @@ console.log("ZUS",id);
         year: exam.year.toString(),
         title: exam.title,
         duration_minutes: exam.duration_minutes.toString(),
-        total_marks: exam.total_marks.toString(),
+        marks: exam.marks.toString(),
+        neg_marks:exam.negative_marks.toString()
       });
     } catch (error) {
       console.error("Failed to fetch test", error);

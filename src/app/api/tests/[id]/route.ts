@@ -15,7 +15,7 @@ export async function PATCH(
     const { supabase } = auth;
 
     const body = await req.json();
-    const { title, year, duration_minutes } = body;
+    const { title, year, duration_minutes,marks,neg_marks } = body;
 
     const { data, error } = await supabase
       .from("tests")
@@ -23,6 +23,8 @@ export async function PATCH(
         title,
         year,
         duration_minutes,
+        marks,
+        negative_marks:neg_marks
       })
       .eq("id", id)
       .select()

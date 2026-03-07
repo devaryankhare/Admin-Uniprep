@@ -13,7 +13,8 @@ export default function EditExamPage() {
     year,
     title,
     duration_minutes,
-    total_marks,
+   marks,
+   neg_marks,
     loading,
     setField,
     fetchTestById,
@@ -92,13 +93,27 @@ export default function EditExamPage() {
         {/* Total Marks */}
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">
-            Total Marks
+            Mark
           </label>
           <input
             type="number"
-            value={total_marks}
+            value={marks}
             onChange={(e) =>
-              setField("total_marks", e.target.value)
+              setField("marks", e.target.value)
+            }
+            className="w-full border rounded-lg p-2.5 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            placeholder="Total marks"
+          />
+        </div>
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            Negative Mark
+          </label>
+          <input
+            type="number"
+            value={neg_marks}
+            onChange={(e) =>
+              setField("neg_marks", e.target.value)
             }
             className="w-full border rounded-lg p-2.5 focus:outline-none focus:ring-2 focus:ring-blue-500"
             placeholder="Total marks"
