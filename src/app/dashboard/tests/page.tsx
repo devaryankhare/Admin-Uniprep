@@ -3,6 +3,7 @@
 import { useTestStore } from "@/store/testStore";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
+import Navbar from "@/app/components/ui/Navbar";
 
 
 export default function TestsPage() {
@@ -25,19 +26,23 @@ export default function TestsPage() {
 
   return (
     <div className="p-8">
+        <Navbar/>
       <h1 className="text-2xl font-bold mb-6">All Exams</h1>
 
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {tests.map((test) => (
           <div
+        
             key={test.id}
             className="bg-white border rounded-xl shadow-md p-6 hover:shadow-lg transition"
           >
-            <h2 className="text-lg font-semibold mb-2">
+            <h2 className="text-lg font-semibold mb-2 text-black">
               {test.title}
             </h2>
 
-            <div className="text-sm text-gray-600 space-y-1">
+            <div 
+              onClick={()=>router.push(`/dashboard/tests/${test.id}/questions`)}
+            className="text-sm text-gray-600 space-y-1">
               <p>📅 Year: {test.year}</p>
               <p>⏱ Duration: {test.duration_minutes} minutes</p>
               <p>📝 Total Marks: {test.total_marks}</p>
@@ -48,13 +53,13 @@ export default function TestsPage() {
                 Edit
               </button>
 
-              <button 
+              {/* <button 
                 onClick={() => deleteTest(test.id)}
               className="px-3 py-1 text-sm bg-red-500 text-white rounded hover:bg-red-600">
                 Delete
-              </button>
+              </button> */}
               <button 
-                onClick={() => deleteTest(test.id)}
+                onClick={() => router.push(`/dashboard/tests/${test.id}/addquestions`)}
               className="px-3 py-1 text-sm bg-green-500 text-white rounded hover:bg-green-600">
                 Add questions
               </button>

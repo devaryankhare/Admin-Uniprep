@@ -3,6 +3,7 @@
 import { useEffect } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { useTestStore } from "@/store/testStore";
+import Navbar from "@/app/components/ui/Navbar";
 
 export default function EditExamPage() {
   const params = useParams();
@@ -40,7 +41,7 @@ export default function EditExamPage() {
   };
 
   return (
-    <div className="max-w-lg mx-auto mt-12 bg-white shadow-md border rounded-xl p-8">
+    <div><Navbar/>    <div className="max-w-lg mx-auto mt-12 bg-white shadow-md border rounded-xl p-8">
       <h1 className="text-2xl font-semibold mb-6 text-gray-800">
         Edit Exam
       </h1>
@@ -48,14 +49,14 @@ export default function EditExamPage() {
       <form onSubmit={handleSubmit} className="space-y-5">
         {/* Title */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
+          <label className="block text-sm font-medium text-gray-900 mb-1">
             Exam Title
           </label>
           <input
             type="text"
             value={title}
             onChange={(e) => setField("title", e.target.value)}
-            className="w-full border rounded-lg p-2.5 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="text-black w-full border rounded-lg p-2.5 focus:outline-none focus:ring-2 focus:ring-blue-500"
             placeholder="Enter exam title"
           />
         </div>
@@ -69,7 +70,7 @@ export default function EditExamPage() {
             type="number"
             value={year}
             onChange={(e) => setField("year", e.target.value)}
-            className="w-full border rounded-lg p-2.5 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="text-black w-full border rounded-lg p-2.5 focus:outline-none focus:ring-2 focus:ring-blue-500"
             placeholder="Exam year"
           />
         </div>
@@ -85,7 +86,7 @@ export default function EditExamPage() {
             onChange={(e) =>
               setField("duration_minutes", e.target.value)
             }
-            className="w-full border rounded-lg p-2.5 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="text-black w-full border rounded-lg p-2.5 focus:outline-none focus:ring-2 focus:ring-blue-500"
             placeholder="Duration"
           />
         </div>
@@ -101,7 +102,7 @@ export default function EditExamPage() {
             onChange={(e) =>
               setField("marks", e.target.value)
             }
-            className="w-full border rounded-lg p-2.5 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="text-black w-full border rounded-lg p-2.5 focus:outline-none focus:ring-2 focus:ring-blue-500"
             placeholder="Total marks"
           />
         </div>
@@ -115,7 +116,7 @@ export default function EditExamPage() {
             onChange={(e) =>
               setField("neg_marks", e.target.value)
             }
-            className="w-full border rounded-lg p-2.5 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="text-black w-full border rounded-lg p-2.5 focus:outline-none focus:ring-2 focus:ring-blue-500"
             placeholder="Total marks"
           />
         </div>
@@ -140,5 +141,7 @@ export default function EditExamPage() {
         </div>
       </form>
     </div>
+    </div>
+
   );
 }

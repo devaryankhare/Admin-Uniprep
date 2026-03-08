@@ -3,6 +3,7 @@ import { createClient } from "@/app/lib/supabase/client";
 import { useTestStore } from "@/store/testStore";
 import { useEffect } from "react";
 import { redirect } from "next/navigation";
+import Navbar from "@/app/components/ui/Navbar";
 export default  function CreateTestPage() {
   const {
     year,
@@ -22,6 +23,9 @@ export default  function CreateTestPage() {
   };
 
 return (
+  <div>
+    <Navbar/>
+  
   <div className="max-w-md mx-auto mt-10 bg-white p-6 shadow rounded">
     <h2 className="text-xl font-bold mb-4 text-gray-800">Create Exam</h2>
 
@@ -82,6 +86,7 @@ return (
         {loading ? "Creating..." : "Create Exam"}
       </button>
     </form>
+  </div>
   </div>
 );
 }
