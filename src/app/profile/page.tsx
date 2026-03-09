@@ -47,7 +47,7 @@ export default function ProfilePage() {
   }
 
   return (
-    <div className="min-h-screen flex justify-center items-center bg-gradient-to-br from-slate-200 to-slate-400">
+    <div className="min-h-screen flex justify-center items-center bg-none">
      <Navbar/>
       <div className="bg-white p-8 rounded-2xl shadow-2xl w-96 text-center space-y-4">
         <h2 className="text-2xl font-bold text-gray-800">
