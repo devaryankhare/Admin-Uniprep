@@ -58,37 +58,10 @@ export default function AuthForm() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, ease: "easeOut" }}
-        className="w-full max-w-4xl bg-white rounded-3xl shadow-2xl shadow-slate-200/50 overflow-hidden flex"
+        className="w-full max-w-xl bg-white rounded-3xl shadow-2xl shadow-slate-200/50 overflow-hidden"
       >
-        {/* Left Side - Image */}
-        <div className="hidden lg:block w-1/2 relative">
-          <div className="absolute inset-0 bg-linear-to-br from-neutral-200/90 to-neutral-500/90 mix-blend-multiply z-10" />
-          <Image
-            src="/assets/exam.avif"
-            alt="Exam preparation"
-            fill
-            className="object-cover"
-            priority
-          />
-          <div className="absolute inset-0 z-20 flex flex-col justify-end p-12 text-white backdrop-blur-xs">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3, duration: 0.5 }}
-            >
-              <h2 className="text-3xl font-bold mb-3 leading-tight">
-                Master your exams with confidence
-              </h2>
-              <p className="text-white text-sm leading-relaxed opacity-90">
-                Join thousands of students achieving their academic goals with
-                our intelligent study platform.
-              </p>
-            </motion.div>
-          </div>
-        </div>
-
         {/* Right Side - Form */}
-        <div className="w-full lg:w-1/2 p-8 lg:p-12 flex flex-col justify-center">
+        <div className="w-full p-8 lg:p-12 flex flex-col justify-center">
           <div className="max-w-sm mx-auto w-full">
             {/* Header */}
             <div className="mb-8">
@@ -97,7 +70,7 @@ export default function AuthForm() {
                 animate={{ opacity: 1, x: 0 }}
                 className="text-2xl font-bold text-slate-900 mb-2"
               >
-                Welcome back
+                Welcome back Admin
               </motion.h1>
               <p className="text-slate-500 text-sm">
                 Enter your credentials to access your admin account
@@ -168,16 +141,6 @@ export default function AuthForm() {
                 </motion.div>
               </div>
 
-              {/* Forgot Password */}
-              <div className="flex justify-end">
-                <button
-                  type="button"
-                  className="text-xs text-blue-600 hover:text-blue-700 font-medium transition-colors duration-200"
-                >
-                  Forgot password?
-                </button>
-              </div>
-
               {/* Submit */}
               <motion.button
                 whileHover={{ scale: 1.01 }}
@@ -193,29 +156,6 @@ export default function AuthForm() {
                 )}
               </motion.button>
             </form>
-
-            {/* Divider */}
-            <div className="relative my-8">
-              <div className="absolute inset-0 flex items-center">
-                <div className="w-full border-t border-slate-200" />
-              </div>
-              <div className="relative flex justify-center text-xs uppercase">
-                <span className="bg-white px-2 text-slate-400 font-medium">
-                  Or continue with
-                </span>
-              </div>
-            </div>
-
-            {/* Google */}
-            <button
-              type="button"
-              className="flex shadow w-full items-center justify-center gap-2 py-2.5 border border-slate-200 rounded-xl hover:bg-slate-50 transition-colors duration-200 group"
-            >
-              <FcGoogle className="text-xl" />
-              <span className="text-sm font-medium text-slate-700">
-                Google
-              </span>
-            </button>
           </div>
         </div>
       </motion.div>

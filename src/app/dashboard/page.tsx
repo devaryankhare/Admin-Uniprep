@@ -14,7 +14,19 @@ export default function Dashboard() {
   const router = useRouter();
   const [loading, setLoading] = useState(true);
 
-  const [activeTab, setActiveTab] = useState<Tab>("profile");
+  const [activeTab, setActiveTab] = useState<Tab>(() => {
+    if (typeof window !== "undefined") {
+      const savedTab = localStorage.getItem("activeTab");
+      if (savedTab === "profile" || savedTab === "create" || savedTab === "list") {
+        return savedTab;
+      }
+    }
+    return "profile";
+  });
+
+  useEffect(() => {
+    localStorage.setItem("activeTab", activeTab);
+  }, [activeTab]);
 
   useEffect(() => {
     const checkUser = async () => {
