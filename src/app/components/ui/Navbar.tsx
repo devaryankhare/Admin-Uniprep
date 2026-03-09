@@ -80,14 +80,14 @@ export default function Navbar() {
       >
         <nav className="flex items-center justify-between px-4 py-2.5 md:px-6">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 group">
+          <div className="flex items-center gap-2 group">
             <div className="relative h-8 w-8 md:h-9 md:w-9 overflow-hidden rounded-lg flex items-center justify-center">
               <Image src="/logo.svg" alt="logo" width={100} height={100} />
             </div>
             <span className="hidden sm:block text-slate-900 text-sm md:text-base tracking-tight">
               Uniprep
             </span>
-          </Link>
+          </div>
 
           {/* User Actions */}
           <div className="flex items-center gap-2">
@@ -149,18 +149,6 @@ export default function Navbar() {
                 />
               </Link>
             )}
-
-            {/* Mobile Menu Toggle */}
-            <button
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="md:hidden p-2 rounded-full hover:bg-slate-100 transition-colors duration-200"
-            >
-              {isMobileMenuOpen ? (
-                <X className="w-5 h-5 text-slate-700" />
-              ) : (
-                <Menu className="w-5 h-5 text-slate-700" />
-              )}
-            </button>
           </div>
         </nav>
       </motion.header>
