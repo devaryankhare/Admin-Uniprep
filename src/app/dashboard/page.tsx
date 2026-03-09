@@ -19,7 +19,7 @@ export default async function Dashboard() {
       </div>
 
       <h1 className="text-black">Dashboard</h1>
-      <p className="text-black">Logged in as: {user.email}</p>
+      <p className="text-black">Logged in as: {user?.email}</p>
 
       <Link
         href="/profile"
