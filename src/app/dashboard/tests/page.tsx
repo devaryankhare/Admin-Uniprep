@@ -1,9 +1,8 @@
 "use client";
-
+import Loader from "@/app/components/ui/loader";
 import { useTestStore } from "@/store/testStore";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
-import Navbar from "@/app/components/Navbar";
 
 
 export default function TestsPage() {
@@ -18,16 +17,15 @@ export default function TestsPage() {
 
   if (loading) {
     return (
-      <div className="p-10 text-center text-gray-500">
-        Loading exams...
+      <div className="flex min-h-screen items-center justify-center">
+        <Loader />
       </div>
     );
   }
 
   return (
-    <div className="p-8">
-        <Navbar/>
-      <h1 className="text-2xl font-bold mb-6">All Exams</h1>
+    <main className="py-8">
+      <h1 className="text-2xl text-black mb-6">All Mocks</h1>
 
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {tests.map((test) => (
@@ -40,24 +38,37 @@ export default function TestsPage() {
               {test.title}
             </h2>
 
-            <div 
-              onClick={()=>router.push(`/dashboard/tests/${test.id}/questions`)}
-            className="text-sm text-gray-600 space-y-1">
+            <div className="text-sm text-gray-600 space-y-1">
               <p>📅 Year: {test.year}</p>
               <p>⏱ Duration: {test.duration_minutes} minutes</p>
               <p>📝 Total Marks: {test.total_marks}</p>
             </div>
 
             <div className="flex gap-3 mt-4">
+              <button 
+                onClick={() => router.push(`/dashboard/tests/${test.id}/questions`)}
+                className="px-3 py-1 text-sm bg-gray-300 text-black rounded hover:bg-gray-400"
+              >
+                View Questions
+              </button>
               <button onClick={()=>{router.push(`/dashboard/tests/${test.id}/edit`)}} className="px-3 py-1 text-sm bg-blue-600 text-white rounded hover:bg-blue-700">
                 Edit
               </button>
 
-              {/* <button 
-                onClick={() => deleteTest(test.id)}
-              className="px-3 py-1 text-sm bg-red-500 text-white rounded hover:bg-red-600">
+              <button
+                onClick={async () => {
+                  if (confirm('Are you sure you want to delete this test and all its questions?')) {
+                    try {
+                      await deleteTest(test.id);
+                    } catch (error) {
+                      alert('Cannot delete the test because it is referenced by other records. Please remove related data first.');
+                    }
+                  }
+                }}
+                className="px-3 py-1 text-sm bg-red-500 text-white rounded hover:bg-red-600"
+              >
                 Delete
-              </button> */}
+              </button>
               <button 
                 onClick={() => router.push(`/dashboard/tests/${test.id}/addquestions`)}
               className="px-3 py-1 text-sm bg-green-500 text-white rounded hover:bg-green-600">
@@ -73,6 +84,6 @@ export default function TestsPage() {
           No exams created yet.
         </div>
       )}
-    </div>
+    </main>
   );
 }
