@@ -2,10 +2,12 @@
 import CreateTestPage from "./create-test/page";
 import TestsPage from "./tests/page";
 import ProfilePage from "../profile/page";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { createClient } from "../lib/supabase/client";
 import { useRouter } from "next/navigation";
 import Navbar from "../components/Navbar";
+import { motion, AnimatePresence } from "framer-motion";
+import gsap from "gsap";
 
 type Tab = "profile" | "create" | "list";
 
@@ -13,6 +15,7 @@ export default function Dashboard() {
   const supabase = createClient();
   const router = useRouter();
   const [loading, setLoading] = useState(true);
+  const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
 
   const [activeTab, setActiveTab] = useState<Tab>(() => {
     if (typeof window !== "undefined") {
@@ -56,7 +59,11 @@ export default function Dashboard() {
         {/* Tabs */}
         <div className="flex gap-2 bg-white rounded-full border border-neutral-200 p-2">
           <button
-            onClick={() => setActiveTab("profile")}
+            ref={(el) => (tabRefs.current[0] = el)}
+            onClick={() => {
+              gsap.fromTo(tabRefs.current[0], { scale: 0.9 }, { scale: 1, duration: 0.25, ease: "power2.out" });
+              setActiveTab("profile");
+            }}
             className={`px-4 py-2 rounded-full text-black ${
               activeTab === "profile"
                 ? "bg-linear-to-br text-white from-pink-400 to-purple-400"
@@ -67,7 +74,11 @@ export default function Dashboard() {
           </button>
 
           <button
-            onClick={() => setActiveTab("create")}
+            ref={(el) => (tabRefs.current[1] = el)}
+            onClick={() => {
+              gsap.fromTo(tabRefs.current[1], { scale: 0.9 }, { scale: 1, duration: 0.25, ease: "power2.out" });
+              setActiveTab("create");
+            }}
             className={`px-4 py-2 rounded-full text-black ${
               activeTab === "create"
                 ? "bg-linear-to-br text-white from-pink-400 to-purple-400"
@@ -78,7 +89,11 @@ export default function Dashboard() {
           </button>
 
           <button
-            onClick={() => setActiveTab("list")}
+            ref={(el) => (tabRefs.current[2] = el)}
+            onClick={() => {
+              gsap.fromTo(tabRefs.current[2], { scale: 0.9 }, { scale: 1, duration: 0.25, ease: "power2.out" });
+              setActiveTab("list");
+            }}
             className={`px-4 py-2 rounded-full text-black ${
               activeTab === "list"
                 ? "bg-linear-to-br text-white from-pink-400 to-purple-400"
@@ -90,24 +105,47 @@ export default function Dashboard() {
         </div>
 
         {/* Tab Content */}
-        <div className="bg-neutral-100">
-          {activeTab === "profile" && (
-            <div className="space-y-4">
-              <ProfilePage />
-            </div>
-          )}
+        <div className="bg-neutral-100 relative overflow-hidden">
+          <AnimatePresence mode="wait">
+            {activeTab === "profile" && (
+              <motion.div
+                key="profile"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.25 }}
+                className="space-y-4"
+              >
+                <ProfilePage />
+              </motion.div>
+            )}
 
-          {activeTab === "create" && (
-            <div className="space-y-4">
-              <CreateTestPage />
-            </div>
-          )}
+            {activeTab === "create" && (
+              <motion.div
+                key="create"
+                initial={{ opacity: 0, x: 40 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -40 }}
+                transition={{ duration: 0.25 }}
+                className="space-y-4"
+              >
+                <CreateTestPage />
+              </motion.div>
+            )}
 
-          {activeTab === "list" && (
-            <div className="space-y-4">
-              <TestsPage />
-            </div>
-          )}
+            {activeTab === "list" && (
+              <motion.div
+                key="list"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.25 }}
+                className="space-y-4"
+              >
+                <TestsPage />
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
       </div>
     </main>
