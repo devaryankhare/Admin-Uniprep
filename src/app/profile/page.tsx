@@ -77,17 +77,6 @@ export default function ProfilePage() {
         <div className="bg-white rounded-2xl shadow-lg p-8">
           {/* Profile Header */}
           <div className="flex flex-col sm:flex-row items-center gap-6 border-b pb-6">
-            <div className="w-24 h-24 rounded-full bg-neutral-200 overflow-hidden flex items-center justify-center text-2xl font-semibold text-neutral-700">
-              {imageUrl ? (
-                <img
-                  src={imageUrl}
-                  alt="profile"
-                  className="w-full h-full object-cover"
-                />
-              ) : (
-                fullName?.charAt(0)?.toUpperCase()
-              )}
-            </div>
             <div className="text-center sm:text-left">
               <h1 className="text-2xl font-semibold text-neutral-900">
                 {fullName || "User"}
