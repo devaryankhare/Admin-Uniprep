@@ -156,6 +156,26 @@ export default function QuestionUpload({ testId }: { testId: string }) {
         </button>
       </div>
 
+      {/* Upload Button */}
+      <div className="mb-6 flex gap-3">
+        <input
+          ref={fileInput}
+          type="file"
+          hidden
+          accept=".xlsx"
+          onChange={handleFileSelect}
+        />
+
+        {rows.length > 0 && (
+          <button
+            onClick={() => createQuestions(testId)}
+            className="bg-green-600 text-white px-4 py-2 rounded"
+          >
+            {loading ? "Uploading..." : "Upload Questions"}
+          </button>
+        )}
+      </div>
+
       {/* Preview Table */}
       {rows.length > 0 && (
         <div className="overflow-x-auto border border-gray-400 rounded">
