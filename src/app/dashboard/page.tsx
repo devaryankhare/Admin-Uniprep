@@ -70,7 +70,7 @@ export default function Dashboard() {
             }}
             className={`px-4 py-2 rounded-full text-black ${
               activeTab === "profile"
-                ? "bg-linear-to-br text-white from-pink-400 to-purple-400"
+                ? "text-black bg-amber-400 border"
                 : ""
             }`}
           >
@@ -85,7 +85,7 @@ export default function Dashboard() {
             }}
             className={`px-4 py-2 rounded-full text-black ${
               activeTab === "create"
-                ? "bg-linear-to-br text-white from-pink-400 to-purple-400"
+                ? "text-black bg-amber-400 border"
                 : ""
             }`}
           >
@@ -100,7 +100,7 @@ export default function Dashboard() {
             }}
             className={`px-4 py-2 rounded-full text-black ${
               activeTab === "list"
-                ? "bg-linear-to-br text-white from-pink-400 to-purple-400"
+                ? "text-black bg-amber-400 border"
                 : ""
             }`}
           >
@@ -114,7 +114,7 @@ export default function Dashboard() {
             }}
             className={`px-4 py-2 rounded-full text-black ${
               activeTab === "flashcards"
-                ? "bg-linear-to-br text-white from-pink-400 to-purple-400"
+                ? "text-black bg-amber-400 border"
                 : ""
             }`}
           >
@@ -128,7 +128,7 @@ export default function Dashboard() {
             }}
             className={`px-4 py-2 rounded-full text-black ${
               activeTab === "notes"
-                ? "bg-linear-to-br text-white from-pink-400 to-purple-400"
+                ? "text-black bg-amber-400 border"
                 : ""
             }`}
           >
